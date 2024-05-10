@@ -1,5 +1,5 @@
-Feature: Logging in a user
-  Scenario Outline: Successful user login
+Feature: Logging in and adding a user address
+  Scenario Outline: Successful  login and adding the address
     Given User is on the login page
     And   clicks the icon Sign in
     When User logs in with
