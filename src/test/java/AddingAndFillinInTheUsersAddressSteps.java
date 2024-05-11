@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
 
 public class AddingAndFillinInTheUsersAddressSteps {
     private static WebDriver driver;
-    //logowanie i asercja sprawdzajaca czy strona jest poprawna
+
     @BeforeAll
     public static void setUp(){
         driver=new ChromeDriver();
@@ -85,9 +85,7 @@ public class AddingAndFillinInTheUsersAddressSteps {
 
     }
 
-
-
-        // wprowadzanie i sprawdzanie adresu
+    // wprowadzanie i sprawdzanie adresu
         @And ("Clicks to the create new address button")
         public void clicksToTheCreateNewAddressButton(){
         driver.findElement(By.xpath("//*[@id=\"content\"]/div[3]/a")).click();
@@ -116,25 +114,25 @@ public class AddingAndFillinInTheUsersAddressSteps {
 
 
         WebElement newAlias = driver.findElement(By.id("field-alias"));
-        String actualAlias = newAlias.getText().trim();
+        String actualAlias = newAlias.getAttribute("value");
         String expectedAlias ="dom";
-        Assertions.assertEquals("dom" + actualAlias, expectedAlias, actualAlias);
+        Assertions.assertEquals(expectedAlias, actualAlias, "Alias is not correct");
 
         WebElement newAddress = driver.findElement(By.id("field-address1"));
-        String actualAddress=newAddress.getText();
+        String actualAddress=newAddress.getAttribute("value");
         String expectedAddress="ul.Cicha";
-        Assertions.assertEquals( "ul.Cicha" + actualAddress,expectedAddress,actualAddress);
+        Assertions.assertEquals(expectedAddress,actualAddress, "Address is not correct");
 
 
         WebElement newCity = driver.findElement(By.id("field-city"));
-        String actualCity=newCity.getText();
+        String actualCity=newCity.getAttribute("value");
         String expectedCity="Gdansk";
-        Assertions.assertEquals("Gdansk" + actualCity,expectedCity,actualCity);
+        Assertions.assertEquals(expectedCity,actualCity, "City is not correct");
 
         WebElement newZip = driver.findElement(By.id("field-postcode"));
-        String actualZip= newZip.getText();
+        String actualZip= newZip.getAttribute("value");
         String expectedZip="80-102";
-        Assertions.assertEquals( "80-102" + actualZip,expectedZip,actualZip);
+        Assertions.assertEquals( expectedZip,actualZip,"Postcode is not correct");
 
 
 
@@ -142,26 +140,25 @@ public class AddingAndFillinInTheUsersAddressSteps {
 
             WebElement countrySelect = driver.findElement(By.id("field-id_country"));
             Select select = new Select(countrySelect);
-
             //List<WebElement> options = select.getOptions();
             // Assertions.assertEquals(1, options.size(), "Oczekiwano tylko jednej opcji, ale znaleziono: " + options.size());
-            String actualCountry = select.getFirstSelectedOption().getText();
+           String actualCountry = select.getFirstSelectedOption().getText();
             String expectedCountry = "Polska";
             Assertions.assertEquals(expectedCountry, actualCountry, "Oczekiwano kraju Polska, ale znaleziono: " + actualCountry);
             System.out.println(actualCountry);
         } catch (NoSuchElementException e) {
-            System.out.println("Nie można znaleźć elementu o podanym id: " + e.getMessage());
+           System.out.println("Nie można znaleźć elementu o podanym id: " + e.getMessage());
 
         } catch (Exception e) {
             System.out.println("Wystąpił inny błąd podczas wykonywania testu: " + e.getMessage());
+
+
+
         }
-
-
-
         WebElement newPhone = driver.findElement(By.id("field-phone"));
-        String actualPhone= newPhone.getText();
+        String actualPhone= newPhone.getAttribute("value");
         String expectedPhone="710-100-100";
-        Assertions.assertEquals( "710-100-100" + actualPhone,expectedPhone,actualPhone);
+        Assertions.assertEquals(expectedPhone,actualPhone, "Phone is not correct");
 
     }
     @Then ("Clicks save the new address")

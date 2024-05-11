@@ -69,6 +69,7 @@ public class TestShop {
 
 
         } catch (NoSuchElementException |TimeoutException |IOException e) {
+            System.out.println("There is an exception: " + e.getMessage());
             //e.printStackTrace();
             //drukowanie wyjatku
         } finally {

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ProductPage {
+
     protected static WebDriver driver;
 
     public ProductPage(WebDriver driver) {
